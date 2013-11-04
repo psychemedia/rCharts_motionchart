@@ -1,71 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Motion Chart</title>
-    <style>
-
-            /*@import url(../style.css?20120427);*/
-
-        #chart {
-            margin-left: 0px;
-            height: 506px;
-        }
-
-        text {
-            font: 10px sans-serif;
-        }
-
-        .dot {
-            stroke: #000;
-        }
-
-        .axis path, .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-
-        .label {
-            fill: #777;
-        }
-
-        .country {
-            font: 500 48px "Helvetica Neue";
-            text-anchor:center;
-            fill: #ddd;
-        }
-
-        .year.label {
-            font: 500 48px "Helvetica Neue";
-            fill: #ddd;
-        }
-
-        .year.label.active {
-            fill: #aaa;
-        }
-
-        .hidden {
-            color: #f00;
-        }
-
-        .visible {
-            color: #0f0;
-        }
-
-        .overlay {
-            fill: none;
-            pointer-events: all;
-            cursor: ns-resize;
-        }
-
-    </style>
-</head>
-<body>
-
-<p id="chart"></p>
-
 
 <p class="attribution"><strong>Source:</strong> <em>Tony Hirst, Pete Mitton, <a href="https://github.com/mbostock/bost.ocks.org/blob/gh-pages/mike/nations/index.html">Mike Bostock</a>, <a href="https://github.com/RandomEtc/mind-gapper-js">Tom Carden</a>, <a
         href="http://gapminder.org">Gapminder</a>. JSON mapper for R by Ramnath Vaidyanathan, http://stackoverflow.com/a/19729235/454773</em></p>
@@ -149,8 +82,8 @@ var currentCountry = "";
 
 // Chart dimensions.
 var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-        width = 960 - margin.right,
-        height = 500 - margin.top - margin.bottom,
+        width = params.width - margin.right,
+        height = params.height - margin.top - margin.bottom,
         yearMargin = 105;
 
 // Various scales. These domains make assumptions of data, naturally.
@@ -173,7 +106,7 @@ var yearScale = d3.scale.linear()
         .clamp(true);
 
 // Create the SVG container and set the origin.
-var svg = d3.select("#chart").append("svg")
+var svg = d3.select("#"+params.dom).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -382,5 +315,3 @@ function motionChart(nations) {
 
 motionChart(jQuery.parseJSON(params.data))
 </script>
-</body>
-</html>
