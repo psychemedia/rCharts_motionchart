@@ -87,7 +87,7 @@ paramsTidy=function(params){
 
 params=paramsTidy(params)
 
-rChart.generator=function(params){
+rChart.generator=function(params, h=400,w=800){
   rChart <- rCharts$new()
   rChart$setLib('../motionchart')
   rChart$setTemplate(script = "../motionchart/layouts/motionchart_Demo.html")
@@ -115,7 +115,10 @@ rChart.generator=function(params){
    ylabel=params$y,
   
    yscale=params$yscale,
-   xscale=params$xscale
+   xscale=params$xscale,
+   
+   width=w,
+   height=h
  )
 
  rChart$set( data= rjson::toJSON(setNames(dat2, NULL)) )
@@ -123,4 +126,4 @@ rChart.generator=function(params){
  rChart
 }
 
-rChart.generator(params)
+rChart.generator(params,w=1000,h=600)
