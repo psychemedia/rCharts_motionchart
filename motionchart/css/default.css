@@ -1,0 +1,48 @@
+
+
+        text {
+            font: 10px sans-serif;
+        }
+
+        .dot {
+            stroke: #000;
+        }
+
+        .axis path, .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .label {
+            fill: #777;
+        }
+
+        .country {
+            font: 500 48px "Helvetica Neue";
+            text-anchor:center;
+            fill: #ddd;
+        }
+
+        .year.label {
+            font: 500 48px "Helvetica Neue";
+            fill: #ddd;
+        }
+
+        .year.label.active {
+            fill: #aaa;
+        }
+
+        .hidden {
+            color: #f00;
+        }
+
+        .visible {
+            color: #0f0;
+        }
+
+        .overlay {
+            fill: none;
+            pointer-events: all;
+            cursor: ns-resize;
+        }
