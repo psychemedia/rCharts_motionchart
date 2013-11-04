@@ -87,38 +87,40 @@ paramsTidy=function(params){
 
 params=paramsTidy(params)
 
-rChart <- rCharts$new()
-rChart$setLib('../motionchart')
-rChart$setTemplate(script = "../motionchart/layouts/motionchart_Demo.html")
+rChart.generator=function(params){
+  rChart <- rCharts$new()
+  rChart$setLib('../motionchart')
+  rChart$setTemplate(script = "../motionchart/layouts/motionchart_Demo.html")
 
-rChart$set(
+  rChart$set(
   
-  countryHighlights='',
-  yearMin= params$start,
-  yearMax=params$end,
+   countryHighlights='',
+   yearMin= params$start,
+   yearMax=params$end,
   
-  x=params$x,
-  y=params$y,
-  radius=params$radius,
-  color=params$color,
-  key=params$key,
+   x=params$x,
+   y=params$y,
+   radius=params$radius,
+   color=params$color,
+   key=params$key,
   
-  ymin=params$ymin,
-  ymax=params$ymax,
-  xmin=params$xmin,
-  xmax=params$xmax,
-  rmin=params$rmin,
-  rmax=params$rmax,
+   ymin=params$ymin,
+   ymax=params$ymax,
+   xmin=params$xmin,
+   xmax=params$xmax,
+   rmin=params$rmin,
+   rmax=params$rmax,
   
-  xlabel=params$x,
-  ylabel=params$y,
+   xlabel=params$x,
+   ylabel=params$y,
   
-  yscale=params$yscale,
-  xscale=params$xscale
-)
+   yscale=params$yscale,
+   xscale=params$xscale
+ )
 
-rChart$set( data= rjson::toJSON(setNames(dat2, NULL)) )
+ rChart$set( data= rjson::toJSON(setNames(dat2, NULL)) )
 
-rChart
+ rChart
+}
 
-
+rChart.generator(params)
