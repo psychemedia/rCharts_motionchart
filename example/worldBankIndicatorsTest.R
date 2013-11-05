@@ -75,8 +75,8 @@ getdata.motionchart=function(countries=c("BD",'GB')){
   })
 }
 
-dat2=getdata.motionchart()
-
+#dat2=getdata.motionchart()
+dat2=getdata.motionchart(c('GB','US','ES','BD'))
 #---
 
 
