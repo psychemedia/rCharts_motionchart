@@ -19,6 +19,7 @@ getdata.WDI=function(countries=c("BD",'GB'),start=1950,end=2012){
   names(tmp)=c('iso2Code','Region')
   
   data <- WDI(indicator=c('SP.DYN.TFRT.IN','SP.POP.TOTL','NY.GDP.PCAP.CD'),start = start, end = end,country=countries)
+  data=data[!(is.na(data$SP.DYN.TFRT.IN) | (is.na(data$SP.POP.TOTL) ) | (is.na(data$NY.GDP.PCAP.CD) )),]
   names(data)=c('iso2Code','Country','Year','Fertility','Population','GDP')
   
   merge(data,tmp,by='iso2Code')
