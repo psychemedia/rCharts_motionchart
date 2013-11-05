@@ -14,11 +14,11 @@ getWorldBankCountries <- function(){
 #----
 
 
-getdata.WDI=function(countries=c("BD",'GB')){
+getdata.WDI=function(countries=c("BD",'GB'),start=1950,end=2012){
   tmp=getWorldBankCountries()[,c('iso2Code','region.value')]
   names(tmp)=c('iso2Code','Region')
   
-  data <- WDI(indicator=c('SP.DYN.TFRT.IN','SP.POP.TOTL','NY.GDP.PCAP.CD'),start = params$start, end = params$end,country=countries)
+  data <- WDI(indicator=c('SP.DYN.TFRT.IN','SP.POP.TOTL','NY.GDP.PCAP.CD'),start = start, end = end,country=countries)
   names(data)=c('iso2Code','Country','Year','Fertility','Population','GDP')
   
   merge(data,tmp,by='iso2Code')
