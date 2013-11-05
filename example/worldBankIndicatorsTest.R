@@ -92,6 +92,11 @@ paramsTidy=function(params){
 
 params=paramsTidy(params)
 
+#Suggestion to use the same motionchart interface as googleVis
+#gvisMotionChart
+#function (data, idvar = "id", timevar = "time", xvar = "", yvar = "", 
+#          colorvar = "", sizevar = "", date.format = "%Y/%m/%d", options = list(), 
+#          chartid) 
 rChart.generator=function(params, h=400,w=800){
   rChart <- rCharts$new()
   rChart$setLib('../motionchart')
