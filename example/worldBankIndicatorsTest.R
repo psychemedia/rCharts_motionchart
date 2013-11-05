@@ -55,22 +55,27 @@ params=list(
 
   )
 
-tmp=getWorldBankCountries()[,c('iso2Code','region.value')]
-names(tmp)=c('iso2Code','Region')
+getdata.motionchart=function(countries=c("BD",'GB')){
+  
+  tmp=getWorldBankCountries()[,c('iso2Code','region.value')]
+  names(tmp)=c('iso2Code','Region')
+  
+  data <- WDI(indicator=c('SP.DYN.TFRT.IN','SP.POP.TOTL','NY.GDP.PCAP.CD'),start = params$start, end = params$end,country=countries)
+  names(data)=c('iso2Code','Country','Year','Fertility','Population','GDP')
+  
+  data=merge(data,tmp,by='iso2Code')
+  dlply(data, .(Country, Region), function(d){
+    list(
+      Country = d$Country[1],
+      Region = d$Region[1],
+      Fertility = sort_(zip_(d$Year, d$Fertility)),
+      GDP = sort_(zip_(d$Year, d$GDP)),
+      Population=sort_(zip_(d$Year, d$Population))
+    )
+  })
+}
 
-data <- WDI(indicator=c('SP.DYN.TFRT.IN','SP.POP.TOTL','NY.GDP.PCAP.CD'),start = params$start, end = params$end,country=c("BD",'GB'))
-names(data)=c('iso2Code','Country','Year','Fertility','Population','GDP')
-
-data=merge(data,tmp,by='iso2Code')
-dat2 <- dlply(data, .(Country, Region), function(d){
-  list(
-    Country = d$Country[1],
-    Region = d$Region[1],
-    Fertility = sort_(zip_(d$Year, d$Fertility)),
-    GDP = sort_(zip_(d$Year, d$GDP)),
-    Population=sort_(zip_(d$Year, d$Population))
-  )
-})
+dat2=getdata.motionchart()
 
 #---
 
